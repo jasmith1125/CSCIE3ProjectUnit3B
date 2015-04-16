@@ -85,13 +85,11 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
             name="username" id="username" type="text"> <br>
           <br>
           Password:<br>
-          <input size="30" required="required" placeholder="password" name="pwd1"
-            id="pwd1" type="password" required minlength=8> <span class="hint" id="pwd1Hint" />Password
-            is too short (must be at least 8 characters)</span> <br>
+          <input size="30" required="required" placeholder="enter password" name="pwd1"
+            id="pwd1" type="password" pattern="^([a-zA-Z0-9@*#]{8,15})$" required> <span class="hint" id="pwd1Hint" /></span> <br>
           Repeat Password:<br>
-          <input size="30" required="required" placeholder="password" name="pwd2"
-            id="pwd2" type="password" required minlength=8> <span class="hint" id="pwd2Hint" />Passwords
-            don't match</span><br>
+          <input size="30" required="required" maxlength="15" placeholder="reenter password" name="pwd2"
+            id="pwd2" type="password" required> <span class="hint" id="pwd2Hint" /></span><br>
           <br>
           <legend>Login Info</legend></fieldset>
         <br>
