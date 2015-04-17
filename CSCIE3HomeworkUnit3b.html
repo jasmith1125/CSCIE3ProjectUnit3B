@@ -86,7 +86,7 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
           <br>
           Password:<br>
           <input size="30" required="required" placeholder="enter password" name="pwd1"
-            id="pwd1" type="password" pattern="^([a-zA-Z0-9@*#]{8,15})$" required> <span class="hint" id="pwd1Hint" /></span> <br>
+            id="pwd1" type="password" maxlength="15" pattern="^([a-zA-Z0-9@*#]{8,15})$" required> <span class="hint" id="pwd1Hint" /></span> <br>
           Repeat Password:<br>
           <input size="30" required="required" maxlength="15" placeholder="reenter password" name="pwd2"
             id="pwd2" type="password" required> <span class="hint" id="pwd2Hint" /></span><br>
@@ -95,20 +95,20 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
         <br>
         <br>
         <fieldset id="bioInfo"> &nbsp;&nbsp; Brief Bio<br>
-          <textarea wrap="soft" rows="6" cols="40" name="bio" id="bio"></textarea>
+          <textarea wrap="soft" rows="6" cols="40" maxlength="140" name="bio" id="bio"></textarea>
           <div id="charLimit">Limit: 140 characters. You have <span id="charsLeft">140</span>
             left.</div>
           <div id="selects">
-            <div id="select1Div" style="float:left;margin-right:15px;"> Select
-              Your &lt;something&gt; <br>
+            <div id="select1Div" style="float:left;margin-right:25px;"> Select
+             Your Favorite Primary Color <br>
               <select name="firstSelect" id="firstSelect">
-                <option>----</option>
+                <option>Choose Primary</option>
               </select>
             </div>
-            <div id="select2Div"> Select Your &lt;somethingElse&gt;
+            <div id="select2Div"> Select a Fashionista Variant of Your Favorite Primary Color
               <br>
               <select name="secondSelect" id="secondSelect">
-                <option>----</option>
+                <option>Related Fashionista Color</option>
                 &nbsp;
               </select>
             </div>
