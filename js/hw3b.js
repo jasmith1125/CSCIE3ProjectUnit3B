@@ -64,43 +64,123 @@ Your task is to make the two complimentary SELECT controls work in this way—
 selecting a value in the first populates the second with appropriate choices.
 The types of values are entirely up to you— automobile Make/Model is just an example.  
 */
-var primary = document.getElementById("firstSelect");
-var secondary = document.getElementById("secondSelect");
-var selectList = {
-	"colors": ["Red", "Blue", "Yellow"]
-}
 
-for (var i = 0; i < selectList.colors.length; i++) {
-	// create <option>
-	var s = document.createElement("option");
-	// create text node
-	var t = document.createTextNode(selectList.colors[i]);
-	// add text node to option
-	s.appendChild(t);
-	// set value = "" on the <option>
-	s.setAttribute("value", selectList.colors[i]);
-	// add the new <option> to the <select>
-	primary.appendChild(s);
-}
+//NOTE: This section is based on the select menu demo in 
+// "Modern Javascript: Develop and Design" by Larry Ullman, pages 390-396
 
-//Create an object with the options from first select field as the properties. 
-//Store the options for the second select field in each property.
+// Function called when the first menu's value changes.
+// Function updates the second menu.
+function updateMenu() {
+    'use strict';
+    
+    // Get references to the menus:
+    var primary = document.getElementById('primary');
+    var primary2 = document.getElementById('primary2');
 
-var myColors ={
-    Red:["Cardinal", "Vermillion", "Rose Madder", "Sangria", "Peony"],
-    Blue:["Azure", "Indigo", "Navy", "Aqua", "Blueberry"],
-    Yellow:["Canary", "Buttercup", "Banana", "Gold", "Lemon"]
-}
+    // For storing the options:
+    var options = null;
+       
+    // Empty the second menu:
+    while (primary2.firstChild) {
+        primary2.removeChild(primary2.firstChild);
+    }
 
-primary.onchange = function() {
-	//When an option is selected, use the value of the selectField to select the property of your object
-	alert(myColors[primary.value]);
-	
-}
+    // Determine the options:
+    if (primary.value == "Red") {
+        options = ["Choose Shade", "Cardinal", "Vermillion", "Rose", "Sangria", "Peony"];
+    } else if (primary.value == "Blue") {
+        options = ["Choose Shade", "Azure", "Indigo", "Navy", "Aqua", "Blueberry"];
+    } else if (primary.value == "Yellow") {
+        options = ["Choose Shade", "Canary", "Buttercup", "Banana", "Gold", "Lemon"];
+    }
+
+    // Update the menu:
+    if (options) {
+        primary2.disabled = false;
+        
+        // Add the options to the menu:
+        for (var i = 0, count = options.length; i < count; i++) {
+            var opt = document.createElement('option');
+            opt.text = opt.value = options[i];
+            primary2.appendChild(opt);
+        }
+        
+    } else { // No selection!
+        primary2.disabled = true;
+    }
+
+} // End of updateMenu() function.
+
+    // Get the select menu:
+    var primary = document.getElementById('primary');
+
+    // Clear out the existing options:
+    while (primary.firstChild) {
+        primary.removeChild(primary.firstChild);
+    }
+    
+    // Add the new options:
+    var options = ["Choose", "Red", "Blue", "Yellow"];
+    for (var i = 0, count = options.length; i < count; i++) {
+        var opt = document.createElement('option');
+        opt.text = opt.value = options[i];
+        primary.appendChild(opt);
+    }
+    
+    // Add an event handler:
+    primary.onchange = updateMenu;
+    
+    // Create the other select menu:
+    var primary2 = document.createElement('select');
+    primary2.id = 'primary2';
+    primary2.disabled = true;
+    primary.parentNode.appendChild(primary2); 
+
+// End select box exercise
+
+// Your form should have at least one subsection which will appear 
+// depending on the value selected in a checkbox, radio button or SELECT.
+
+// NOTE: I got the code for hiding the account name field when the checkbox is checked a second time
+// from: http://stackoverflow.com/questions/19734907/javascript-hide-show-div-on-checkbox-checked-unchecked
+
+// Get the Twitter account input elements and assign to variables
+var twitter = document.getElementById("twitter");
+var account = document.getElementById("twitterAccount");
+twitter.checked = false;
+// Add event listener
+twitter.addEventListener("change", function(e) {
+    if (e.target.name == "twitter") {
+        account.style.display = this.checked ? "block" : "none";
+    } 
+}); // end event
 
 
+// Phone number: reformat to match the HTML5 validation pattern. User may enter any ten-digit number 
+// in either xxx-xxx-xxxx, (xxx)xxx-xxxx or xxxxxxxxxx form.
+// Validation should confirm ten-digit number and format as xxx-xxx-xxxx. 
 
+// Get the phone input element and assign to variable
+var myRegEx = /^\d{3}-\d{3}-\d{4}$/; 
+var phone = document.getElementById("phone");
+var phoneHint = document.getElementById("phoneHint");
 
-} // end window onload
+    phone.addEventListener("change", function() {
+    // Check that phone input meets requirements in regular expression
+    // xxx-xxx-xxxx
+    if (myRegEx.test(phone.value))
+    {
+        phoneHint.style.display = "none"; 
+    } 
+    // If password doesn't conform to regular expression requirements, 
+    // offer a hint
+    else {
+        phoneHint.style.display = "block";
+        phoneHint.innerHTML = "Phone number must be ten digits";
+        
+    } 
+
+}); // end event listener
+} //end window onload
 
 // http://www.the-art-of-web.com/javascript/validate-password/

@@ -38,3 +38,15 @@ h4 {
     text-shadow:1px 1px 0px #cd8a15;
     background-color:#f6b33d;
 }
+
+#charLimit {
+    margin-bottom: 2em;
+}
+
+.hidden {
+    display: none;
+}
+
+#submitBtn {
+    margin-top: 2em;
+}

@@ -98,21 +98,40 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
           <textarea wrap="soft" rows="6" cols="40" maxlength="140" name="bio" id="bio"></textarea>
           <div id="charLimit">Limit: 140 characters. You have <span id="charsLeft">140</span>
             left.</div>
-          <div id="selects">
-            <div id="select1Div" style="float:left;margin-right:25px;"> Select
-             Your Favorite Primary Color <br>
-              <select name="firstSelect" id="firstSelect">
-                <option>Choose Primary</option>
-              </select>
-            </div>
-            <div id="select2Div"> Select a Fashionista Variant of Your Favorite Primary Color
-              <br>
-              <select name="secondSelect" id="secondSelect">
-                <option>Related Fashionista Color</option>
-                &nbsp;
-              </select>
-            </div>
-          </div>
+          
+
+            <fieldset><legend>Choose Your Favorite Primary Color</legend>
+            <div><select name="primary" id="primary">
+                <option>Choose</option>
+               <optgroup label="Red">
+                    <option value="shade">Choose Shade</option>
+                    <option value="cardinal">Cardinal</option>
+                    <option value="vermillion">Vermillion</option>
+                    <option value="rose">Rose</option>
+                    <option value="sangria">Sangria</option>
+                    <option value="peony">Peony</option>
+                  </optgroup>
+                  <optgroup label="Blue">
+                    <option value="shade">Choose Shade</option>
+                    <option value="azure">Azure</option>
+                    <option value="indigo">Indigo</option>
+                    <option value="navy">Navy</option>
+                    <option value="aqua">Aqua</option>
+                    <option value="blueberry">Blueberry</option>
+                  </optgroup>
+                  <optgroup label="Yellow">
+                    <option value="shade">Choose Shade</option>
+                    <option value="canary">Canary</option>
+                    <option value="buttercup">Buttercup</option>
+                    <option value="banana">Banana</option>
+                    <option value="gold">Gold</option>
+                    <option value="lemon">Lemon</option>
+                  </optgroup>
+            </select></div>    
+                       
+                    </fieldset>
+                    <div id="output"></div>
+
           <br>
           Contact Info<br>
           <br>
@@ -131,13 +150,18 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
             type="text">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
           <input placeholder="Postal Code" name="zip" id="zip " type="text"><br>
           <br>
-          Phone&nbsp;&nbsp;&nbsp; <br>
-          <input size="16" placeholder="Phone Number" id="phone" name="phone" pattern=""
-            type="text"><br>
+          Phone (xxx-xxx-xxxx format)&nbsp;&nbsp;&nbsp; <br>
+          <input size="16"type="tel" placeholder="Phone Number" id="phone" name="phone" maxlength= "12" pattern="pattern="^\d{3}-\d{3}-\d{4}"
+             required ><span class="hint" id="phoneHint" /></span><br>
           <br>
           Email<br>
           <input placeholder="Email address" name="email" type="email"><br>
           <br>
+          Check to add your Twitter account
+          <input name="twitter" id="twitter" type="checkbox"><br>
+          <div id="twitterAccount" class="hidden">Your Twitter Username
+            <input type="text" size="30">
+          </div>
           <button type="submit" id="submitBtn" name="submit">Register Me!</button><br>
           <legend>About You</legend></fieldset>
         <br>
