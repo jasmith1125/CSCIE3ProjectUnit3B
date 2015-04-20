@@ -84,9 +84,10 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
         <fieldset name="LoginInfo"><input size="30" placeholder="username"
             name="username" id="username" type="text"> <br>
           <br>
-          Password:<br>
+           Password:<br>
           <input size="30" required="required" placeholder="enter password" name="pwd1"
-            id="pwd1" type="password" maxlength="15" pattern="^([a-zA-Z0-9@*#]{8,15})$" required> <span class="hint" id="pwd1Hint" /></span> <br>
+            id="pwd1" type="password" maxlength="15" pattern="^([a-zA-Z0-9@*#]{8,15})$" /> 
+            <span class="hint" id="pwd1Hint" /></span> <br>
           Repeat Password:<br>
           <input size="30" required="required" maxlength="15" placeholder="reenter password" name="pwd2"
             id="pwd2" type="password" required> <span class="hint" id="pwd2Hint" /></span><br>
@@ -100,32 +101,40 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
             left.</div>
           
 
-            <fieldset><legend>Choose Your Favorite Primary Color</legend>
+            <fieldset><legend>Type of Family Pet</legend>
             <div><select name="primary" id="primary">
                 <option>Choose</option>
-               <optgroup label="Red">
-                    <option value="shade">Choose Shade</option>
-                    <option value="cardinal">Cardinal</option>
-                    <option value="vermillion">Vermillion</option>
-                    <option value="rose">Rose</option>
-                    <option value="sangria">Sangria</option>
-                    <option value="peony">Peony</option>
+               <optgroup label="Dog">
+                    <option value="dogBreed">Choose Breed</option>
+                    <option value="labrador">Labrador Retriever</option>
+                    <option value="golden">Golden Retriever</option>
+                    <option value="beagle">Beagle</option>
+                    <option value="german">German Shepherd</option>
+                    <option value="yorkshire">Yorkshire Terrier</option>
+                    <option value="bulldog">Bulldog</option>
+                    <option value="poodle">Poodle</option>
+                    <option value="otherDog">Other</option>
                   </optgroup>
-                  <optgroup label="Blue">
-                    <option value="shade">Choose Shade</option>
-                    <option value="azure">Azure</option>
-                    <option value="indigo">Indigo</option>
-                    <option value="navy">Navy</option>
-                    <option value="aqua">Aqua</option>
-                    <option value="blueberry">Blueberry</option>
+                  <optgroup label="Cat">
+                    <option value="catBreed">Choose Breed</option>
+                    <option value="persian">Persian</option>
+                    <option value="maine">Maine Coon</option>
+                    <option value="exotic">Exotic Shorthair</option>
+                    <option value="siamese">Siamese</option>
+                    <option value="ragdoll">Ragdoll</option>
+                    <option value="abyss">Abyssinian</option>
+                    <option value="otherCat">Other</option>
                   </optgroup>
-                  <optgroup label="Yellow">
-                    <option value="shade">Choose Shade</option>
-                    <option value="canary">Canary</option>
-                    <option value="buttercup">Buttercup</option>
-                    <option value="banana">Banana</option>
-                    <option value="gold">Gold</option>
-                    <option value="lemon">Lemon</option>
+                  <optgroup label="Other">
+                    <option value="type">Choose Type</option>
+                    <option value="bird">Bird</option>
+                    <option value="fish">Fish</option>
+                    <option value="ferret">Ferret</option>
+                    <option value="rabbit">Rabbit</option>
+                    <option value="rodent">Rodent</option>
+                    <option value="snake">Snake</option>
+                    <option value="turtle">Turtle</option>
+                    <option value="otherPet">Other</option>
                   </optgroup>
             </select></div>    
                        
@@ -151,11 +160,12 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
           <input placeholder="Postal Code" name="zip" id="zip " type="text"><br>
           <br>
           Phone (xxx-xxx-xxxx format)&nbsp;&nbsp;&nbsp; <br>
-          <input size="16"type="tel" placeholder="Phone Number" id="phone" name="phone" maxlength= "12" pattern="pattern="^\d{3}-\d{3}-\d{4}"
-             required ><span class="hint" id="phoneHint" /></span><br>
+          <input size="16" type="text" placeholder="Phone Number" id="phone" name="phone" maxlength="14"  />
+          <span class="hint" id="phoneHint" /></span><br>
           <br>
           Email<br>
-          <input placeholder="Email address" name="email" type="email"><br>
+          <input placeholder="Email address" name="email" id="email" type="email"><br>
+           <span class="hint" id="submitHint" /></span>
           <br>
           Check to add your Twitter account
           <input name="twitter" id="twitter" type="checkbox"><br>
