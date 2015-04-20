@@ -2,52 +2,62 @@
 window.onload = function() {
 'use strict';
 /* 
-There are two password fields on the form. You will write code that ensures that:
-1. Users must enter passwords of at least 8 characters.
-2. The two fields must match.
-Users receive feedback immediately if the passwords don't match, rather than only when the form is submitted.
+* #1
+* There are two password fields on the form. You will write code that ensures that:
+* 1. Users must enter passwords of at least 8 characters.
+* 2. The two fields must match.
+* Users receive feedback immediately if the passwords don't match, rather than only when the form is submitted.
 */
 // Get the password input elements and assign to variables
 var pass1 = document.forms[0].pwd1;
 var pass2 = document.forms[0].pwd2;
 var passHint1 = document.getElementById("pwd1Hint");
 var passHint2 = document.getElementById("pwd2Hint");
-var myRegEx = /^([a-zA-Z0-9@*#!]{8,15})$/;
+var myRegEx = /^([a-zA-Z0-9@*#~]{8,15})$/;
 
 pass1.addEventListener("input", function() {
 	// Check that password meets requirements in regular expression
 	// (any letter, upper or lower case, any number, selected special characters,
 	// minimum 8 characters, maximum 15 characters)
 	if (myRegEx.test(pass1.value))
+    {
+        passHint1.style.display = "none";
+        pass1.blur();
+        pass2.removeAttribute('disabled');
+        pass2.focus();
+    } 
+    else if (!myRegEx.test(pass1.value))
  	{
-        passHint1.style.display = "none"; 
-     
-    } 
-    else {
         passHint1.style.display = "block";
-        passHint1.innerHTML = "Length: 8-15 characters; characters allowed: digits, letters, @ * # !"
-    } 
+        passHint1.innerHTML = "Password length: 8-15 characters (letters, numbers, @ * # ~)";
+     }
 }); // end event listener
 
 // Check that password 2 matches password 1
-pass2.addEventListener("input", function() {
- 
+pass2.addEventListener("keyup", function() {
+   
     if (pass1.value === pass2.value)
      {
-            passHint2.style.display = "none"; 
+            passHint2.style.display = "block";
+            passHint2.style.color = "green";
+            passHint2.innerHTML = "Passwords match" 
+            
         } else {
             passHint2.style.display = "block";
             passHint2.innerHTML = "Passwords must match"
         } 
 
 }); // end event listener
+
+pass2.setAttribute('disabled', 'disabled');
 // End password exercise
 
 
 /* 
-There is a textarea on the form labeled Brief Bio. Your code will 
-provide a countdown near the 140 character limit caption that counts 
-backwards from 140 to zero to show users how many characters they have left. 
+* #2
+* There is a textarea on the form labeled Brief Bio. Your code will 
+* provide a countdown near the 140 character limit caption that counts 
+* backwards from 140 to zero to show users how many characters they have left. 
 */
 	// Get the textarea
 	var field = document.getElementById("bio");
@@ -55,23 +65,37 @@ backwards from 140 to zero to show users how many characters they have left.
 	field.addEventListener("keypress", function() {
 	    // Get the counter and set this equal to 140 minus the length of value from textarea
 	    document.getElementById("charsLeft").innerHTML = 140 - this.value.length;
-
+        if (field.value.length >= 140) {
+            field.value = field.value.substring(0,140);
+        }
 	}); // end event listener
+
+   // Add a handler to prevent pasting in more than 140 characters
+    field.addEventListener("input", function() {
+        // Shows how many characters the pasted text was over the limit
+        document.getElementById("charsLeft").innerHTML = 140 - this.value.length;
+        if (field.value.length >= 140) {
+            field.value = field.value.substring(0,140);
+        }
+    }); // end event listener
 // End textarea exercise
 
 
-/* 
-Your task is to make the two complimentary SELECT controls work in this way—
-selecting a value in the first populates the second with appropriate choices.
-The types of values are entirely up to you— automobile Make/Model is just an example.  
-*/
-
+/*
+* #3 
+* Your task is to make the two complimentary SELECT controls work in this way—
+* selecting a value in the first populates the second with appropriate choices.
+* The types of values are entirely up to you— automobile Make/Model is just an example. */
+ 
 // NOTE: This section is based on the select menu demo in 
 // "Modern Javascript: Develop and Design" by Larry Ullman, pages 390-396
 
+// NOTE: BECAUSE THIS FOLLOWS A TUTORIAL, I DO NOT EXPECT TO GET CREDIT FOR THIS PART OF UNIT 3B
+// THIS IS FOR MY PRACTICE AND REFERENCE  
+
 // Function called when the first menu's value changes.
 // Function updates the second menu.
-function updateMenu() {
+function updateMenu(s) {
     
     // Get references to the menus
     var primary = document.getElementById('primary');
@@ -113,7 +137,6 @@ function updateMenu() {
     } else { // No selection!
         primary2.disabled = true;
     }
-
 } // End of updateMenu() function.
 
     // Get the first select list
@@ -145,8 +168,10 @@ function updateMenu() {
 // End select box exercise
 
 
-// Your form should have at least one subsection which will appear 
-// depending on the value selected in a checkbox, radio button or SELECT.
+/*
+* #4.
+* Your form should have at least one subsection which will appear 
+* depending on the value selected in a checkbox, radio button or SELECT. */
 
 //  Get the Twitter account input elements and assign to variables
    var twitter = document.getElementById("twitter");
@@ -162,9 +187,11 @@ function updateMenu() {
 // End subsection appears when checkbox checked exercise
 
 
-// Phone number: reformat to match the HTML5 validation pattern. User may enter any ten-digit number 
-// in either xxx-xxx-xxxx, (xxx)xxx-xxxx or xxxxxxxxxx form.
-// Validation should confirm ten-digit number and format as xxx-xxx-xxxx. 
+/*
+* #5
+* Phone number: reformat to match the HTML5 validation pattern. User may enter any ten-digit number 
+* in either xxx-xxx-xxxx, (xxx)xxx-xxxx or xxxxxxxxxx form.
+* Validation should confirm ten-digit number and format as xxx-xxx-xxxx. */
 
 // NOTE: This code is based on Mike's demo (http://jsfiddle.net/jasmith1125/vq488yht/4/).
 // but adds functionality to make code work with formats other than xxx-xxx-xxxx
@@ -195,9 +222,11 @@ function reformat() {
     // end phone number exercise  
 
 
-// Upon submitting the form, make sure that at least one of the Phone 
-// or Email fields are completed. One or the other, or both, may be filled in, 
-// but both cannot be blank. Provide a useful message to the user if they fail to complete one of these fields.
+/*
+* #6
+* Upon submitting the form, make sure that at least one of the Phone 
+* or Email fields are completed. One or the other, or both, may be filled in, 
+* but both cannot be blank. Provide a useful message to the user if they fail to complete one of these fields. */
 
     // Get the form
     var form = document.forms[0];

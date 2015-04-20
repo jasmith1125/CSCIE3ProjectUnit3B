@@ -86,7 +86,7 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
           <br>
            Password:<br>
           <input size="30" required="required" placeholder="enter password" name="pwd1"
-            id="pwd1" type="password" maxlength="15" pattern="^([a-zA-Z0-9@*#]{8,15})$" /> 
+            id="pwd1" type="password" maxlength="15" /> 
             <span class="hint" id="pwd1Hint" /></span> <br>
           Repeat Password:<br>
           <input size="30" required="required" maxlength="15" placeholder="reenter password" name="pwd2"
@@ -96,12 +96,11 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
         <br>
         <br>
         <fieldset id="bioInfo"> &nbsp;&nbsp; Brief Bio<br>
-          <textarea wrap="soft" rows="6" cols="40" maxlength="140" name="bio" id="bio"></textarea>
-          <div id="charLimit">Limit: 140 characters. You have <span id="charsLeft">140</span>
-            left.</div>
-          
+          <textarea wrap="soft" rows="6" cols="40"  name="bio" id="bio"></textarea>
+          <div id="charLimit">Limit: 140 characters. Number of characters left: <span id="charsLeft">140</span>
+            .</div>
 
-            <fieldset><legend>Type of Family Pet</legend>
+           Type of Family Pet
             <div><select name="primary" id="primary">
                 <option>Choose</option>
                <optgroup label="Dog">
@@ -138,8 +137,7 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
                   </optgroup>
             </select></div>    
                        
-                    </fieldset>
-                    <div id="output"></div>
+                    <div id="output"></div>  
 
           <br>
           Contact Info<br>
