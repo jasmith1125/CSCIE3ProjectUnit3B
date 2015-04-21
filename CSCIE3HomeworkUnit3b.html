@@ -80,98 +80,73 @@ The other half was Unit 3 Project: Part B, previously distributed as a ZIP file.
           if they fail to complete one of these fields.</li>
       </ol>
       <br>
-      <form autocomplete="off" action="" name="hw4Form"><br>
+      <form autocomplete="off" method="post" action="http://morpheus.dce.harvard.edu/cgi-bin/echo.cgi" name="hw4Form"><br>
         <fieldset name="LoginInfo"><input size="30" placeholder="username"
             name="username" id="username" type="text"> <br>
-          <br>
+            <br>
            Password:<br>
-          <input size="30" required="required" placeholder="enter password" name="pwd1"
-            id="pwd1" type="password" maxlength="15" /> 
-            <span class="hint" id="pwd1Hint" /></span> <br>
-          Repeat Password:<br>
-          <input size="30" required="required" maxlength="15" placeholder="reenter password" name="pwd2"
-            id="pwd2" type="password" required> <span class="hint" id="pwd2Hint" /></span><br>
-          <br>
-          <legend>Login Info</legend></fieldset>
+              <input size="30" required="required" placeholder="enter password" name="pwd1" id="pwd1" type="password" maxlength="15"> 
+              <span class="hint" id="pwd1Hint" /></span> <br>
+            Repeat Password:<br>
+              <input size="30" required="required" maxlength="15" placeholder="reenter password" name="pwd2" id="pwd2" type="password"> 
+              <span class="hint" id="pwd2Hint" /></span><br>
+              <br>
+        <legend>Login Info</legend></fieldset>
         <br>
         <br>
-        <fieldset id="bioInfo"> &nbsp;&nbsp; Brief Bio<br>
-          <textarea wrap="soft" rows="6" cols="40"  name="bio" id="bio"></textarea>
-          <div id="charLimit">Limit: 140 characters. Number of characters left: <span id="charsLeft">140</span>
-            .</div>
+       <fieldset id="bioInfo"> <legend>About You</legend>
+          &nbsp;&nbsp; Brief Bio<br>
+            <textarea wrap="soft" rows="6" cols="40"  name="bio" id="bio"></textarea>
+            <div id="charLimit">Limit: 140 characters. Number of characters left: <span id="charsLeft">140</span>.</div>
 
            Type of Family Pet
-            <div><select name="primary" id="primary">
-                <option>Choose</option>
-               <optgroup label="Dog">
-                    <option value="dogBreed">Choose Breed</option>
-                    <option value="labrador">Labrador Retriever</option>
-                    <option value="golden">Golden Retriever</option>
-                    <option value="beagle">Beagle</option>
-                    <option value="german">German Shepherd</option>
-                    <option value="yorkshire">Yorkshire Terrier</option>
-                    <option value="bulldog">Bulldog</option>
-                    <option value="poodle">Poodle</option>
-                    <option value="otherDog">Other</option>
-                  </optgroup>
-                  <optgroup label="Cat">
-                    <option value="catBreed">Choose Breed</option>
-                    <option value="persian">Persian</option>
-                    <option value="maine">Maine Coon</option>
-                    <option value="exotic">Exotic Shorthair</option>
-                    <option value="siamese">Siamese</option>
-                    <option value="ragdoll">Ragdoll</option>
-                    <option value="abyss">Abyssinian</option>
-                    <option value="otherCat">Other</option>
-                  </optgroup>
-                  <optgroup label="Other">
-                    <option value="type">Choose Type</option>
-                    <option value="bird">Bird</option>
-                    <option value="fish">Fish</option>
-                    <option value="ferret">Ferret</option>
-                    <option value="rabbit">Rabbit</option>
-                    <option value="rodent">Rodent</option>
-                    <option value="snake">Snake</option>
-                    <option value="turtle">Turtle</option>
-                    <option value="otherPet">Other</option>
-                  </optgroup>
+            <div><select name="primaryMenu" id="primaryMenu">
+                <option>Choose Pet</option>
+                <option value="dog" id="dog">Dog</option>
+                <option value="cat" id="cat">Cat</option>
+                <option value="other" id="other">Other Pet</option>
             </select></div>    
-                       
-                    <div id="output"></div>  
+            <div><select name="petList" id="petList"></select></div>          
 
           <br>
           Contact Info<br>
+           <br>
+           <div class="address">
+                <label for="Address">Address</label>
+                <input size="30" placeholder="address" id="address" type="text" name="address">
+            </div>
+            <div class="address">
+                <label for="City">City</label>
+                <input size="30" placeholder="City" id="city" type="text" name="city">
+            </div>
+            <div class="address">
+                <label for="State">State</label>
+                <input size="10" placeholder="State" id="state" type="text" name="state">
+            </div>
+            <div class="address">
+                <label for="Postal Code">Postal Code</label>
+                <input size="20" placeholder="Postal Code" id="postal" type="text" name="postal">
+            </div>
+     <br> <br>
+            <div class="contact">
+                <label for="phone">Phone (xxx-xxx-xxxx format)</label>
+                <input size="20" placeholder="Phone Number" id="phone" type="text" name="phone" maxlength="14">
+            </div>
+               <span class="hint" id="phoneHint" /></span><br>
+            <div class="contact">
+                <label for="email">Email</label>
+                <input size="30" placeholder="Email Address" id="email" type="email" name="email">
+            </div>
+                <span class="hint" id="submitHint" /></span>
           <br>
-          Address<br>
-          <input size="30" placeholder="Street Address" name="address" id="address"
-            type="text"><br>
-          <br>
-          City&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; State&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp; Postal Code<br>
-          <input size="20" placeholder="Town or City" name="city" id="city" type="text">&nbsp;&nbsp;&nbsp;
-          <input size="10" placeholder="State/Province" name="state" id="state"
-            type="text">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          <input placeholder="Postal Code" name="zip" id="zip " type="text"><br>
-          <br>
-          Phone (xxx-xxx-xxxx format)&nbsp;&nbsp;&nbsp; <br>
-          <input size="16" type="text" placeholder="Phone Number" id="phone" name="phone" maxlength="14"  />
-          <span class="hint" id="phoneHint" /></span><br>
-          <br>
-          Email<br>
-          <input placeholder="Email address" name="email" id="email" type="email"><br>
-           <span class="hint" id="submitHint" /></span>
-          <br>
-          Check to add your Twitter account
-          <input name="twitter" id="twitter" type="checkbox"><br>
-          <div id="twitterAccount" class="hidden">Your Twitter Username
-            <input type="text" size="30">
-          </div>
+            <div class="contact">
+                Check to add your Twitter account
+                <input name="twitter" id="twitter" type="checkbox"><br>
+                <div id="twitterAccount" class="hidden">Your Twitter Username
+                <input type="text" size="30">
+            </div>
           <button type="submit" id="submitBtn" name="submit">Register Me!</button><br>
-          <legend>About You</legend></fieldset>
+         </fieldset>
         <br>
       </form>
       <br>

@@ -48,5 +48,27 @@ h4 {
 }
 
 #submitBtn {
-    margin-top: 2em;
+    margin: 2em 0;
+}
+
+#primaryMenu {
+    float: left;
+    margin-right: 1em;
+    margin-top: 5px;
+}
+
+#petList {
+    margin-top: 5px;
+}
+
+#pwd1 {
+    margin-bottom: .5em;
+}
+.address {
+    display: block;
+    float: left;
+    margin-right: 20px;
+}
+.contact {
+    margin-top: 1em;
 }

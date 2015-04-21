@@ -1,4 +1,6 @@
 /* hw3b.js */
+/* Joyce Smith, CSCI E-3 */
+
 window.onload = function() {
 'use strict';
 /* 
@@ -8,7 +10,9 @@ window.onload = function() {
 * 2. The two fields must match.
 * Users receive feedback immediately if the passwords don't match, rather than only when the form is submitted.
 */
-// Get the password input elements and assign to variables
+
+// NOTE: This incorporates elements of your section demo on 4/19.
+// Here's link to the relevant fiddle: http://fiddle.jshell.net/rkgt3rgn/1/ 
 var pass1 = document.forms[0].pwd1;
 var pass2 = document.forms[0].pwd2;
 var passHint1 = document.getElementById("pwd1Hint");
@@ -59,111 +63,71 @@ pass2.setAttribute('disabled', 'disabled');
 * provide a countdown near the 140 character limit caption that counts 
 * backwards from 140 to zero to show users how many characters they have left. 
 */
-	// Get the textarea
-	var field = document.getElementById("bio");
-	// Add an event listener that responds to keypress
-	field.addEventListener("keypress", function() {
-	    // Get the counter and set this equal to 140 minus the length of value from textarea
-	    document.getElementById("charsLeft").innerHTML = 140 - this.value.length;
-        if (field.value.length >= 140) {
-            field.value = field.value.substring(0,140);
+// Get the textarea
+var field = document.getElementById("bio");
+// Add an event listener that responds to keypress
+field.addEventListener("keypress", function() {
+	 // Get the counter and give user count of characters remaining
+	 document.getElementById("charsLeft").innerHTML = 140 - this.value.length;
+     // Limit characters to 140
+     if (field.value.length >= 140) {
+       field.value = field.value.substring(0,139);
         }
-	}); // end event listener
+}); // end event listener
 
-   // Add a handler to prevent pasting in more than 140 characters
-    field.addEventListener("input", function() {
-        // Shows how many characters the pasted text was over the limit
-        document.getElementById("charsLeft").innerHTML = 140 - this.value.length;
-        if (field.value.length >= 140) {
-            field.value = field.value.substring(0,140);
-        }
-    }); // end event listener
+// Add a handler to prevent pasting in more than 140 characters
+field.addEventListener("input", function() {
+     // Shows how many characters the pasted text was over the 140-character limit
+     document.getElementById("charsLeft").innerHTML = 140 - this.value.length;
+     if (field.value.length >= 140) {
+           field.value = field.value.substring(0,139);
+     }
+}); // end event listener
 // End textarea exercise
 
 
 /*
 * #3 
 * Your task is to make the two complimentary SELECT controls work in this way—
-* selecting a value in the first populates the second with appropriate choices.
-* The types of values are entirely up to you— automobile Make/Model is just an example. */
+* selecting a value in the first populates the second with appropriate choices. */
  
-// NOTE: This section is based on the select menu demo in 
-// "Modern Javascript: Develop and Design" by Larry Ullman, pages 390-396
-
-// NOTE: BECAUSE THIS FOLLOWS A TUTORIAL, I DO NOT EXPECT TO GET CREDIT FOR THIS PART OF UNIT 3B
-// THIS IS FOR MY PRACTICE AND REFERENCE  
+// NOTE: This section is based on Mike's section demo, 
+// here is fiddle link: https://jsfiddle.net/hilborn/r3x7wucz/
 
 // Function called when the first menu's value changes.
 // Function updates the second menu.
-function updateMenu(s) {
+// Create array of pet arrays; array index of each nested array
+// corresponds to index of the array elements in primaryMenu (html)
+var pets = [
+    [''],
+    ['Breed', 'Labrador Retriever', 'Beagle', 'German Shepherd', 'Golden Retriever', 'Poodle', 'Corgi'],
+    ['Breed','Persian', 'Ragdoll', 'Calico', 'Maine Coon', 'Siamese', 'Ragdoll'],
+    ['Pet Type', 'Bird', 'Lizard', 'Fish', 'Rabbit', 'Rat', 'Turtle', 'Other']
+];
+
+// Create secondary menu of pet breeds/alternate types
+function createPetList () {
+    // Get the index from the primaryMenu selection
+    var selection = this.selectedIndex
+    // Get the secondary menu and assign to a variable
+    var list = document.getElementById("petList");
+    // Remove elements from secondary (pet breed) menu
+    list.innerHTML = '';
     
-    // Get references to the menus
-    var primary = document.getElementById('primary');
-    var primary2 = document.getElementById('primary2');
-
-    // Create variable to store options
-    var options = null;
-       
-    // Empty the second menu (clear out old data
-    // in preparation for new data based on change
-    // to first select list
-    while (primary2.firstChild) {
-        primary2.removeChild(primary2.firstChild);
-    }
-
-    // Determine the options available based on
-    // selection from first select list
-    if (primary.value == "Dog") {
-        options = ["Choose Breed", "Labrador Retriever", "Golden Retriever", "Beagle", "German Shepherd", 
-        "Yorkshire Terrier", "Bulldog", "Poodle", "Other"];
-    } else if (primary.value == "Cat") {
-        options = ["Choose Breed", "Persian", "Maine Coon", "Exotic Shorthair", "Siamese", "Ragdoll", "Other"];
-    } else if (primary.value == "Other") {
-        options = ["Choose Type", "Bird", "Fish", "Ferret", "Rabbit", "Rodent", "Snake", "Turtle", "Other"];
-    }
-
-    // Update the second select list based on
-    // option picked in first select list
-    if (options) {
-        primary2.disabled = false;
-        
-        // Add the options to the menu
-        for (var i = 0, count = options.length; i < count; i++) {
-            var opt = document.createElement('option');
-            opt.text = opt.value = options[i];
-            primary2.appendChild(opt);
-        }
-        
-    } else { // No selection!
-        primary2.disabled = true;
-    }
-} // End of updateMenu() function.
-
-    // Get the first select list
-    var primary = document.getElementById('primary');
-
-    // Clear out the existing options
-    while (primary.firstChild) {
-        primary.removeChild(primary.firstChild);
-    }
-    
-    // Add the new options
-    var options = ["Choose", "Dog", "Cat", "Other"];
-    for (var i = 0, count = options.length; i < count; i++) {
-        var opt = document.createElement('option');
-        opt.text = opt.value = options[i];
-        primary.appendChild(opt);
-    }
-
-    // Add an event handler
-    primary.onchange = updateMenu;
-    
-    // Create the other select list (breeds)
-    // based on choice in first select list
-    var primary2 = document.createElement('select');
-    primary2.id = 'primary2';
-    primary2.disabled = true;
-    primary.parentNode.appendChild(primary2); 
+    // For the selected index, add OPTION elements
+    for (var i = 0; i < pets[selection].length; i++) {
+        var newOpt = document.createElement("OPTION");
+        // Create text node to hold the array items
+        var text  = document.createTextNode(pets[selection][i]);
+        // Append text node to option element
+        newOpt.appendChild(text);
+        // Append option element to the secondary select menu
+        list.appendChild(newOpt);
+    }        
+}
+// Add an event handler to generate secondary menu when a selection
+// is made in the primary menu
+document.getElementById("primaryMenu").onchange = createPetList;
 
 // End select box exercise
 
@@ -174,17 +138,17 @@ function updateMenu(s) {
 * depending on the value selected in a checkbox, radio button or SELECT. */
 
 //  Get the Twitter account input elements and assign to variables
-   var twitter = document.getElementById("twitter");
-   var account = document.getElementById("twitterAccount");
-    // Add event listener
-    twitter.addEventListener("click", function() {
-        if (twitter.checked) {
-            account.style.display = "block";
-        } else {
-            account.style.display = "none";
-        }
-    }); // end event
-// End subsection appears when checkbox checked exercise
+var twitter = document.getElementById("twitter");
+var account = document.getElementById("twitterAccount");
+// Add event listener to respond to checkbox input
+twitter.addEventListener("click", function() {
+     if (twitter.checked) {
+          account.style.display = "block";
+    } else {
+          account.style.display = "none";
+     }
+}); // end event
+// End show/hide subsection exercise
 
 
 /*
@@ -206,7 +170,7 @@ function reformat() {
     var stripNonDigits = phone.replace(/\D/g,'');
     // If input matches the regEx for xxx-xxx-xxxx
     // replace the input with input formatted as regEx
-    // The $1-$2-$3 grabs groups of code from the regEx   
+    // The $1-$2-$3 grabs groups of code based on the regEx   
     // and inserts hyphens in the right places
     if (stripNonDigits.match(/^(\d{3})(\d{3})(\d{4})$/)) {
        document.getElementById("phone").value = stripNonDigits.replace(/^(\d{3})(\d{3})(\d{4})$/, "$1-$2-$3");
@@ -217,39 +181,43 @@ function reformat() {
         phoneHint.innerHTML =  "Phone number must be ten digits";
     }
 } //end reformat
-    // Call the reformat function when the user releases key
-    document.getElementById("phone").onkeyup = reformat;
-    // end phone number exercise  
+   
+// Call the reformat function when the user releases key
+document.getElementById("phone").onkeyup = reformat;
+
+// end phone number exercise  
 
 
 /*
 * #6
-* Upon submitting the form, make sure that at least one of the Phone 
-* or Email fields are completed. One or the other, or both, may be filled in, 
-* but both cannot be blank. Provide a useful message to the user if they fail to complete one of these fields. */
+* Upon submitting the form, make sure that at least one of the Phone or Email fields
+* is completed. One or the other, or both, may be filled in, but both cannot be blank.
+* Provide a useful message to the user if they fail to complete one of these fields. */
 
-    // Get the form
-    var form = document.forms[0];
-    // Add a handler to prevent submission of form unless
-    // phone or email is completed
-	form.addEventListener("submit", function (e) {
-		// Get the phone, email and hint fields and assign to variables
-	    var phone = document.getElementById("phone");
-	    var email = document.getElementById("email");
-	    var submitHint = document.getElementById("submitHint");
+// Get the form
+var form = document.forms[0];
+// Add a handler to prevent submission of form unless
+// phone or email is completed
+form.addEventListener("submit", function (e) {
+	// Get the phone, email and hint fields and assign to variables
+	var phone = document.getElementById("phone");
+	var email = document.getElementById("email");
+	var submitHint = document.getElementById("submitHint");
         
-        // Allow form submission if phone or email is completed
-    	if (phone.value || email.value) {
-	        submitHint.style.display = "none";
+    // Allow form submission if phone or email is completed
+    if (phone.value || email.value) {
+	   submitHint.style.display = "none";
 	            
-	        // If both phone and email are blank, prevent submission   
-	        } else if (phone.value == "" && email.value == "") {
-	    	submitHint.style.display = "block";
-	        submitHint.innerHTML = "You must provide either a phone number or an email address";
-	        // Prevent default behavior of submit button
-        	e.preventDefault();  
-	        } 
+	// If both phone and email are blank, prevent submission   
+	} else if (phone.value == "" && email.value == "") {
+        // Let the user know phone or email is required
+	    submitHint.style.display = "block";
+	    submitHint.innerHTML = "You must provide either a phone number or an email address";
+	    // Prevent default behavior of submit button
+        e.preventDefault();  
+	   } 
           
 	}); // end event listener
+// end form submission exercise
 
 } //end window onload
